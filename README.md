@@ -9,4 +9,5 @@
 |5|[SQL (SQLite)](./05/05_sqlite.sql)|
 |6|[SQL (SQLite)](./06/06_sqlite.sql)|
 |7|[SQL (SQLite)](./07/07_sqlite.sql)|
+|8|[SQL (SQLite)](./08/08_sqlite.sql)|
 
