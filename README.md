@@ -10,4 +10,5 @@
 |6|[SQL (SQLite)](./06/06_sqlite.sql)|
 |7|[SQL (SQLite)](./07/07_sqlite.sql)|
 |8|[SQL (SQLite)](./08/08_sqlite.sql)|
+|9|[SQL (SQLite)](./09/09_sqlite.sql)|
 
