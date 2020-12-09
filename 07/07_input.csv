@@ -1,0 +1,15 @@
+light red,1,bright white
+light red,2,muted yellow
+dark orange,3,bright white
+dark orange,4,muted yellow
+bright white,1,shiny gold
+muted yellow,2,shiny gold
+muted yellow,9,faded blue
+shiny gold,1,dark olive
+shiny gold,2,vibrant plum
+dark olive,3,faded blue
+dark olive,4,dotted black
+vibrant plum,5,faded blue
+vibrant plum,6,dotted black
+faded blue,0,
+dotted black,0,
