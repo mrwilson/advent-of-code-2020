@@ -82,15 +82,25 @@ static int splitNext(sqlite3_vtab_cursor *cur) {
 
   char* ptr;
 
-printState(pCur);
+    if (strlen(pCur->delimiter) == 0) {
 
-       char *token = strsep(&pCur->rest, pCur->delimiter);
-       if (token == NULL) {
-           pCur->finished = true;
-           return SQLITE_OK;
-       }
+        if (pCur->rowid == strlen(pCur->rest)) {
+            pCur->finished = true;
+        } else {
+            pCur->rowid++;
+        }
 
-       pCur->current = token;
+        return SQLITE_OK;
+    }
+
+   char *token = strsep(&pCur->rest, pCur->delimiter);
+
+   if (token == NULL) {
+       pCur->finished = true;
+       return SQLITE_OK;
+   }
+
+    pCur->current = token;
     pCur->rowid++;
 
   printState(pCur);
@@ -100,6 +110,10 @@ printState(pCur);
 
 static int splitColumn(sqlite3_vtab_cursor *cur, sqlite3_context *ctx, int i){
   split_cursor *pCur = (split_cursor*)cur;
+
+  if (strlen(pCur->delimiter) == 0) {
+    strncpy(pCur->current, &pCur->rest[pCur->rowid-1], 1);
+  }
 
   sqlite3_result_text(ctx, pCur->current, -1, SQLITE_TRANSIENT);
 
@@ -134,6 +148,11 @@ static int splitFilter(
     pCur->finished = false;
 
     pCur->rowid = 0;
+
+    if (strlen(pCur->delimiter) == 0) {
+        pCur->current = sqlite3_malloc(2);
+        pCur->current[2] = '\0';
+    }
 
   return splitNext(pVtabCursor);
 }
