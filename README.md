@@ -1,5 +1,15 @@
 # no items, sql only, final destination
 
+This place is not a place of honor.
+
+No highly esteemed deed is commemorated here.
+
+Nothing valued is here.
+
+What is here was dangerous and repulsive to us.
+
+## Solutions
+
 |Day|Solution|
 |-|-|
 |1|[SQL (SQLite)](./01/01_sqlite.sql)|
