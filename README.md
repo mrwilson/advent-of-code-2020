@@ -13,3 +13,4 @@
 |9|[SQL (SQLite)](./09/09_sqlite.sql)|
 |10|[SQL (SQLite)](./10/10_sqlite.sql)|
 |11|[SQL (SQLite)](./11/11_next_generation.sql)|
+|12|[SQL (SQLite)](./12/12_sqlite.sql)|
