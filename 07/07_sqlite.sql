@@ -1,16 +1,53 @@
-DROP TABLE IF EXISTS bag_rules;
+.load ../utils/split.dylib
 
-CREATE TABLE bag_rules (
-  colour TEXT,
-  amount INT,
-  other_colour TEXT
-);
-
--- Magic happens here to turn the input format (bad)
--- into colour, amount, other_colour tuples (good)
+create table inputs(line text);
 
 .mode csv
-.import 07_input.csv bag_rules
+.separator \t
+.import 07_input.txt inputs
+
+create table bag_rules as with cleanup(rule) as (
+    select
+        replace(
+            replace(
+                replace(
+                    replace(line, ".", ""),
+                    " bags contain ",
+                    ":"
+                ),
+                " bags",
+                ""
+            ),
+            " bag",
+            ""
+        )
+    from
+        inputs
+),
+outer_inner(outside, inside) as (
+    select
+        substr(rule, 0, instr(rule, ":")),
+        substr(rule, instr(rule, ":")+1)
+    from
+        cleanup
+),
+rules(colour, amount, other_colour) as (
+    select
+        outside colour,
+        cast(
+            substr(
+                trim(split.value," "),
+                0,
+                instr(trim(split.value), " ")
+        ) as int) amount,
+        substr(
+            trim(split.value," "),
+            instr(trim(split.value), " ")+1
+        ) other_colour
+    from
+        outer_inner,
+        split(outer_inner.inside, ",")
+) select * from rules;
 
 -- Part 1
 
