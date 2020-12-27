@@ -1,12 +1,24 @@
-CREATE TABLE aoc_1(value INT);
+create table expense_report(entry int);
 
 .mode csv
-.import 01_input.txt aoc_1
+.import 01_input.txt expense_report
 
 -- Part 1
-SELECT DISTINCT "AOC-2020-1.1 = " || (a.value * b.value)
-	FROM aoc_1 a, aoc_1 b WHERE a.value + b.value = 2020;
+select
+    distinct (a.entry * b.entry)
+from
+    expense_report a,
+    expense_report b
+where
+    a.entry + b.entry = 2020;
 
 -- Part 2
-SELECT DISTINCT "AOC-2020-1.2 = " || (a.value * b.value * c.value)
-	FROM aoc_1 a, aoc_1 b, aoc_1 c WHERE a.value + b.value + c.value = 2020;
+
+select
+    distinct (a.entry * b.entry * c.entry)
+from
+    expense_report a,
+    expense_report b,
+    expense_report c
+where
+    a.entry + b.entry + c.entry = 2020;
