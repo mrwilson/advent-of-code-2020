@@ -1,3 +1,6 @@
 .load split.dylib
 
-select value from split("abc",""); -- a,b,c
+select
+    group_concat(value,"|")
+from
+    split("abc",""); -- a,b,c
